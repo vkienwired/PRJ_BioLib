@@ -1,3 +1,4 @@
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -12,3 +13,4 @@ if (!$conn) {
 if (!$conn->set_charset("utf8mb4")) {
     echo "Lỗi khi thiết lập charset: " . $conn->error;
 }
+?>
