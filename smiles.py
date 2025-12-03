@@ -2,16 +2,18 @@ import os
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem.Draw import rdMolDraw2D
-from IPython.display import SVG
 import argparse
 
 parser = argparse.ArgumentParser(description="Process ligand files")
 parser.add_argument('filename', nargs='+', help="Path to the ligand file (supports .sdf and .mol2)")
 args = parser.parse_args()
 def generate_and_save_svg(smiles, cid):
+    # Thư mục img nằm cùng cấp với smiles.py (C:\xampp\htdocs\BioLib\img)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    IMG_DIR = os.path.join(script_dir, "img")
 
-    IMG_DIR = "/var/www/html/mscskeylab.hus.vnu.edu.vn/rwdir/thach/"
-
+    if not os.path.exists(IMG_DIR):
+        os.makedirs(IMG_DIR)
     mol = Chem.MolFromSmiles(smiles)
 
     AllChem.Compute2DCoords(mol)
