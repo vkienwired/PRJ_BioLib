@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
     <style>
         .logo {
             position: absolute;
-            top: 10;
+            top: 10px;
             left: 0;
             width: 100px;
             height: 100px;
@@ -26,7 +27,7 @@
             height: 100vh;
             background: rgb(247, 255, 229);
             color: #000;
-            
+
         }
 
         :root {
@@ -51,13 +52,7 @@
             top: 100px;
         }
 
-        nav> :is(h1, span.material-symbols-outlined) {
-            width: 34px;
-            height: 34px;
-            display: grid;
-            place-items: center;
-
-        }
+        
 
         a {
             cursor: pointer;
@@ -76,7 +71,8 @@
 
         .menu li {
             display: inline-block;
-            width: 120px;
+            /* Tăng width một chút để chứa chữ Đăng xuất / Đăng nhập */
+            width: 130px; 
             color: #999;
             transition: all 0.3s ease-in-out;
         }
@@ -96,7 +92,7 @@
             align-items: center;
             justify-content: center;
             padding: 0 7px;
-            font-size: 16px;
+
             text-decoration: none;
             position: relative;
             height: 100%;
@@ -136,6 +132,12 @@
             height: 100px;
             padding: 10px 20px;
         }
+
+        /* Highlight riêng cho nút Admin */
+        .admin-link {
+            color: #d9534f !important;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -151,9 +153,17 @@
                 <li><a href="index.php">Trang chủ</a></li>
                 <li><a href="search.php">Tìm kiếm</a></li>
                 <li><a href="addnew.php">Thêm mới</a></li>
-                <li><a href="aboutus.php">Thông tin</a></li>
-                <li><a href="contact.php">Liên hệ</a></li>
-            </ul>
+
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <li><a href="admin_dashboard.php" class="admin-link">Quản trị</a></li>
+                <?php endif; ?>
+
+                <?php if(isset($_SESSION['user_id'])): ?>
+                    <li><a href="logout.php">Đăng xuất</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Đăng nhập</a></li>
+                <?php endif; ?>
+                </ul>
         </nav>
     </div>
 </body>

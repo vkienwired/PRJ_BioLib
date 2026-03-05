@@ -1,12 +1,23 @@
+<?php
+session_start();
+// Chốt chặn 1: Bắt buộc đăng nhập mới được vào trang này
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>
+            alert('Cậu phải đăng nhập tài khoản thì mới được đóng góp hợp chất nhé!');
+            window.location.href = 'login.php';
+          </script>";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm hợp chất mới</title>
     <style>
-        button {
+        .button {
             font-family: arial;
             background-color: rgb(196, 215, 178);
             color: #000;
@@ -21,7 +32,7 @@
             cursor: pointer;
         }
 
-        button:hover {
+        .button:hover {
             background-color: rgb(160, 196, 157);
             box-shadow: 0 0 0 5px rgb(225, 236, 200);
             color: #fff;
@@ -39,49 +50,57 @@
         input{
             width: 500px;
             height: 30px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         textarea{
             width: 500px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
-    <?php
-    include("header.php");
-    ?>
+    <?php include("header.php"); ?>
+    
     <div class="centered-content">
         <h1>Thêm hợp chất mới</h1>
+        <p style="color: #666; font-style: italic;">Xin chào <b><?php echo $_SESSION['username']; ?></b>! Dữ liệu của cậu sẽ được Admin kiểm duyệt trước khi hiển thị công khai.</p>
 
         <form action="insert.php" method="post">
             <label for="name">Tên hợp chất:</label><br>
             <input type="text" id="name" name="name" required><br><br>
 
-            <label for="cid">Mã hợp chất (cid):</label><br>
+            <label for="cid">Mã hợp chất (PubChem CID):</label><br>
             <input type="text" id="cid" name="cid" required><br><br>
 
-            <label for="smiles">Chuỗi SMILES:</label><br>
+            <label for="smiles">Chuỗi SMILES (Dùng để vẽ hình SVG tự động):</label><br>
             <input type="text" id="smiles" name="smiles"><br><br>
 
-            <label for="benefit">Lợi ích:</label><br>
-            <textarea id="benefit" name="benefit" rows="5"></textarea><br><br>
+            <label for="benefit">Công dụng:</label><br>
+            <textarea id="benefit" name="benefit" rows="4"></textarea><br><br>
 
-            <label for="weakness">Hạn chế:</label><br>
-            <textarea id="weakness" name="weakness" rows="5"></textarea><br><br>
+            <label for="weakness">Nhược điểm:</label><br>
+            <textarea id="weakness" name="weakness" rows="4"></textarea><br><br>
 
             <label for="origin">Nguồn gốc:</label><br>
-            <textarea type="text" id="origin" name="origin" rows="5"></textarea><br><br>
+            <textarea type="text" id="origin" name="origin" rows="4"></textarea><br><br>
 
-            <label for="purpose">Mục đích sử dụng:</label><br>
-            <textarea id="purpose" name="purpose" rows="5"></textarea><br><br>
+            <label for="purpose">Đích sàng lọc (Mục đích sử dụng):</label><br>
+            <textarea id="purpose" name="purpose" rows="4"></textarea><br><br>
+            
             <label for="doi">Mã số DOI bài báo (nếu có):</label><br>
             <input type="text" id="doi" name="doi"><br><br>
 
-            <button type="submit" class="button">Thêm</button>
+            <button type="submit" class="button">Gửi duyệt</button>
         </form>
     </div>
 </body>
-<?php
-include_once 'footer.php';
-?>
+<?php include_once 'footer.php'; ?>
 </html>
