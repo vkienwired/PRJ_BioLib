@@ -1,10 +1,10 @@
 <?php
 session_start();
-// Chốt chặn 1: Bắt buộc đăng nhập mới được vào trang này
+
 if (!isset($_SESSION['user_id'])) {
     echo "<script>
-            alert('Cậu phải đăng nhập tài khoản thì mới được đóng góp hợp chất nhé!');
-            window.location.href = 'login.php';
+            alert('Đăng nhập tài khoản thì mới được đóng góp hợp chất');
+            window.location.href = 'login.php';     
           </script>";
     exit();
 }
@@ -71,7 +71,7 @@ if (!isset($_SESSION['user_id'])) {
     
     <div class="centered-content">
         <h1>Thêm hợp chất mới</h1>
-        <p style="color: #666; font-style: italic;">Xin chào <b><?php echo $_SESSION['username']; ?></b>! Dữ liệu của cậu sẽ được Admin kiểm duyệt trước khi hiển thị công khai.</p>
+        <p style="color: #666; font-style: italic;">Xin chào <b><?php echo $_SESSION['username']; ?></b>! Dữ liệu của bạn sẽ được Admin kiểm duyệt trước khi hiển thị công khai.</p>
 
         <form action="insert.php" method="post">
             <label for="name">Tên hợp chất:</label><br>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['user_id'])) {
             <label for="cid">Mã hợp chất (PubChem CID):</label><br>
             <input type="text" id="cid" name="cid" required><br><br>
 
-            <label for="smiles">Chuỗi SMILES (Dùng để vẽ hình SVG tự động):</label><br>
+            <label for="smiles">Chuỗi SMILES:</label><br>
             <input type="text" id="smiles" name="smiles"><br><br>
 
             <label for="benefit">Công dụng:</label><br>

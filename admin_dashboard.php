@@ -110,6 +110,11 @@ include_once 'header.php';
             <h2>BẢNG ĐIỀU KHIỂN QUẢN TRỊ VIÊN</h2>
             <p>Hệ thống xét duyệt dữ liệu chờ xử lý</p>
         </div>
+    <div style="width: 98%; text-align: right; margin-bottom: 15px;">
+            <a href="manage_users.php" style="text-decoration: none; color: #fff; background-color: #0056b3; padding: 10px 15px; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s;">
+                Quản lý Người dùng hệ thống ➡
+            </a>
+    </div>
 
         <?php
         // Truy vấn dữ liệu: Lấy cả bản ghi mới (pending) và bản cập nhật (pending_update)

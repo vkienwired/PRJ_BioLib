@@ -29,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: index.php"); 
             exit();
         } else {
-            $error_message = "Sai mật khẩu rồi cậu ơi!";
+            $error_message = "Sai mật khẩu";
         }
     } else {
-        $error_message = "Tài khoản không tồn tại!";
+        $error_message = "Tài khoản không tồn tại";
     }
 }
 
@@ -129,7 +129,7 @@ include_once 'header.php';
 <body>
     <div class="centered-content">
         <div class="auth-box">
-            <h2>Đăng nhập Hệ thống</h2>
+            <h2>Đăng nhập</h2>
             
             <?php if($error_message != "") echo "<div class='error'>$error_message</div>"; ?>
             
@@ -145,7 +145,7 @@ include_once 'header.php';
                 <button type="submit" class="button">Đăng nhập</button>
             </form>
 
-            <a href="register.php" class="register-link">Chưa có tài khoản? Đăng ký Contributor ngay!</a>
+            <a href="register.php" class="register-link">Chưa có tài khoản? Hãy đăng ký!</a>
         </div>
     </div>
 </body>
