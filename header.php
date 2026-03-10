@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -151,6 +150,7 @@
         <nav>
             <ul class="menu">
                 <li><a href="index.php">Trang chủ</a></li>
+                <li><a href="list.php">Danh sách hợp chất</a></li>
                 <li><a href="search.php">Tìm kiếm</a></li>
                 <li><a href="addnew.php">Thêm mới</a></li>
 
