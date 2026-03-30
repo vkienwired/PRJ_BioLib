@@ -2,7 +2,7 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "dna";
+$dbname = "dnakien";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname, 3307);
 

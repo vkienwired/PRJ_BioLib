@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th3 05, 2026 lúc 06:36 PM
+-- Thời gian đã tạo: Th3 10, 2026 lúc 08:28 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `compoundbiolib`
+-- Cấu trúc bảng cho bảng `compoundBioLib`
 --
 
-CREATE TABLE `compoundbiolib` (
+CREATE TABLE `compoundBioLib` (
   `stt` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `cid` int(20) NOT NULL,
@@ -44,10 +44,10 @@ CREATE TABLE `compoundbiolib` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `compoundbiolib`
+-- Đang đổ dữ liệu cho bảng `compoundBioLib`
 --
 
-INSERT INTO `compoundbiolib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakness`, `origin`, `purpose`, `doi`, `new_stt`, `status`, `created_by`, `edit_of`) VALUES
+INSERT INTO `compoundBioLib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakness`, `origin`, `purpose`, `doi`, `new_stt`, `status`, `created_by`, `edit_of`) VALUES
 (1, 'L-Abrine', 160511, '', 'Điều hòa miễn dịch chống ung thư gan (HCC).', 'độc tính tiềm ẩn (ít độc hơn abrin)', 'hạt cây Abrus precatorius ( cam thảo dây loại trắng)', 'enzyme IDO1: PDB ID: 2D0T', 'https://doi.org/10.3389/fimmu.2023.1185985', 1, 'approved', NULL, NULL),
 (2, 'Acacetin', 5280442, '', 'chống ung thư gan và các khối u phụ thuộc STAT3 (gan phổi vú máu).', '', 'hoắc hương núi (Agastache rugosa) và cúc vàng (Chrysanthemum morifolium)', 'enzyme JAK2: tltk dùng trong Mittal et al., 2009 nhưng chưa tìm thấy báo', 'https://doi.org/10.1016/j.fct.2021.112091', 2, 'approved', NULL, NULL),
 (3, '1-Acetyl-β-carboline', 638667, '', 'ức chế viêm gan B', 'co giật', '', 'Protein: mô phỏng từ HIV reverse transcriptase để thay cho HBV POL vì chưa có cấu trúc thực nghiệm. PDB ID: 1RTD', 'https://doi.org/10.3892/etm.2023.12026', 3, 'approved', NULL, NULL),
@@ -169,8 +169,7 @@ INSERT INTO `compoundbiolib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakne
 (121, 'quercitrin', 5280459, 'C[C@H]1[C@@H]([C@H]([C@H]([C@@H](O1)OC2=C(OC3=CC(=CC(=C3C2=O)O)O)C4=CC(=C(C=C4)O)O)O)O)O', 'chống oxy hóa, chống viêm, bảo vệ gan, hỗ trợ tim mạch, kháng khuẩn – virus và tiềm năng chống ung thư.', 'hấp thu kém và thiếu dữ liệu lâm sàng ở người, nên hiện tại thường được khai thác như một chất bổ trợ trong dinh dưỡng và dược liệu.', 'là một flavonoid glycoside tự nhiên ncos trong lá sồi, lá keo, lá táo gai,...', '', '', NULL, 'approved', 1, NULL),
 (122, 'quercetin 3-O-glucuronide', 5274585, 'C1=CC(=C(C=C1C2=C(C(=O)C3=C(C=C(C=C3O2)O)O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)C(=O)O)O)O)O)O)O)O', 'chống oxy hóa, chống viêm, bảo vệ tim mạch và thần kinh', 'sinh khả dụng hạn chế và thiếu nghiên cứu lâm sàng', 'hình thành sau khi ăn thực phẩm giàu quercetin (táo, hành tây, trà xanh, nho, quả mọng…).có mặt ở mức thấp trong một số loại trái cây và rau', '', '', NULL, 'approved', 1, NULL),
 (123, 'Fentanyl', 3345, 'CCC(=O)N(C1CCN(CC1)CCC2=CC=CC=C2)C3=CC=CC=C3', 'giảm đau nặng và gây mê', 'nguy cơ nghiện, lệ thuộc và quá liều gây tử vong', 'Được phát triển từ meperidine (pethidine) – một opioid tổng hợp trước đó. Hiện nay, fentanyl và các dẫn xuất (ví dụ: carfentanil, sufentanil, alfentanil, remifentanil) được tổng hợp trong phòng thí nghiệm cho mục đích y học.', '', '', NULL, 'approved', 1, NULL),
-(124, 'curcumin', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', '', NULL, 'approved', 1, NULL),
-(125, 'vitexin', 5280441, 'C1=CC(=CC=C1C2=CC(=O)C3=C(O2)C(=C(C=C3O)O)[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)O', 'chống oxy hóa, chống viêm, bảo vệ tim mạch, an thần, kháng khuẩn và tiềm năng chống ung thư', 'sinh khả dụng thấp, nghiên cứu lâm sàng còn hạn chế và chưa có chuẩn liều rõ ràng', '\"tìm thấy trong nhiều loài thực vật như Passiflora incarnata (lạc tiên, passion flower), Hawthorn (Crataegus spp.) – táo gai.Bamboo leaves (lá tre). Vitex negundo (cây ngũ trảo), trong gạo lứt, đậu xanh, một số loại thảo dược Trung Quốc\"', '', '', NULL, 'approved', 1, NULL);
+(124, 'curcumin', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', '', NULL, 'approved', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -10014,7 +10013,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `fullname`, `academic_level`, `major`, `institution`, `research_interests`, `academic_statement`, `profile_links`, `publications`) VALUES
 (7, 'admin', '$2y$10$XuW2OMjW9MEUprQfYMi7deTRPLYODikH5IunyhHR/9ZiBhg8gCGVO', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'student_user', '$2y$10$XuW2OMjW9MEUprQfYMi7deTRPLYODikH5IunyhHR/9ZiBhg8gCGVO', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (9, 'vutrungkien_t67@hus.edu.vn', '$2y$10$nWnnhhT5YDeI3jqq58YkuOxrDHOSWD120S/jgWznYM27z534gXsqq', 'user', 'vutrungkien_t67@hus.edu.vn', 'Vũ Trung Kiên', 'Sinh viên đại học', 'Vi sinh y học', 'Trường Đại học Khoa học Tự Nhiên - Đại học Quốc gia Hà Nội', 'Thiết kế thuốc', 'Kinh nghiệm nghiên cứu 5 năm trong lĩnh vực y sinh', 'GS:  | ORCID:  | RG: ', '');
 
 --
@@ -10022,9 +10020,9 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `fullname`, 
 --
 
 --
--- Chỉ mục cho bảng `compoundbiolib`
+-- Chỉ mục cho bảng `compoundBioLib`
 --
-ALTER TABLE `compoundbiolib`
+ALTER TABLE `compoundBioLib`
   ADD PRIMARY KEY (`stt`);
 
 --
@@ -10058,10 +10056,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT cho bảng `compoundbiolib`
+-- AUTO_INCREMENT cho bảng `compoundBioLib`
 --
-ALTER TABLE `compoundbiolib`
-  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+ALTER TABLE `compoundBioLib`
+  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT cho bảng `conference`

@@ -9,14 +9,14 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 $start_from = ($page - 1) * $limit;
 
 // Truy vấn tổng số bản ghi hợp lệ để tính toán số lượng trang
-$sql_count = "SELECT COUNT(stt) AS total FROM compoundbiolib WHERE status = 'approved'";
+$sql_count = "SELECT COUNT(stt) AS total FROM compoundBioLib WHERE status = 'approved'";
 $result_count = mysqli_query($conn, $sql_count);
 $row_count = mysqli_fetch_assoc($result_count);
 $total_records = $row_count['total'];
 $total_pages = ceil($total_records / $limit);
 
 // Truy vấn trích xuất dữ liệu theo giới hạn trang hiện tại
-$sql_list = "SELECT stt, name, cid, origin FROM compoundbiolib 
+$sql_list = "SELECT stt, name, cid, origin FROM compoundBioLib 
              WHERE status = 'approved' 
              ORDER BY stt DESC 
              LIMIT $start_from, $limit";
