@@ -23,12 +23,12 @@ $sql_admin = "INSERT INTO `users` (`username`, `password`, `role`) VALUES ('admi
 $sql_user = "INSERT INTO `users` (`username`, `password`, `role`) VALUES ('student_user', '$pass_hash', 'user')";
 
 if(mysqli_query($conn, $sql_admin) && mysqli_query($conn, $sql_user)){
-    echo "<h2 style='color: green;'>✅ Đã reset và tạo mới tài khoản thành công 100%!</h2>";
+    echo "<h2 style='color: green;'>Đã reset và tạo mới tài khoản thành công 100%!</h2>";
     echo "Hệ thống đã dọn dẹp tài khoản cũ và bơm lại database với mật khẩu mã hóa siêu xịn:<br>";
     echo "- Tài khoản 1: <b>admin</b> | Mật khẩu: <b>123456</b><br>";
     echo "- Tài khoản 2: <b>student_user</b> | Mật khẩu: <b>123456</b><br><br>";
     echo "<a href='login.php' style='padding: 10px 20px; background: rgb(160, 196, 157); color: #000; text-decoration: none; border-radius: 5px; font-weight: bold;'>Quay lại trang Đăng nhập để test nào!</a>";
 } else {
-    echo "<h2 style='color: red;'>❌ Có lỗi xảy ra: " . mysqli_error($conn) . "</h2>";
+    echo "<h2 style='color: red;'> Có lỗi xảy ra: " . mysqli_error($conn) . "</h2>";
 }
 ?>

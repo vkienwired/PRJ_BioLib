@@ -40,6 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $update_sql = "UPDATE compoundBioLib SET name='$name', cid='$cid', smiles='$smiles', benefit='$benefit', weakness='$weakness', origin='$origin', purpose='$purpose', doi='$doi' WHERE stt='$id'";
         
         if (mysqli_query($conn, $update_sql)) {
+            if (!empty($smiles)) {
+        $pythonPath = 'C:\\Users\\ADMIN\\anaconda3\\envs\\rdkit-env\\python.exe'; 
+        $scriptPath = 'C:\\xampp\\htdocs\\BioLib\\smiles.py';
+
+        // Lệnh thực thi: Lấy SMILES mới vẽ đè vào file có tên là CID.svg
+        $cmd = escapeshellcmd($pythonPath) . ' ' . escapeshellarg($scriptPath) . ' ' .
+               escapeshellarg($smiles) . ' ' . escapeshellarg($cid);
+        
+        // Thực thi ngầm và bắt lỗi nếu có
+        exec($cmd . " 2>&1", $output, $returnVar);
+        }
             echo "<script>alert('Dữ liệu đã được cập nhật trực tiếp vào hệ thống.'); window.location.href='search.php';</script>";
         } else {
             $error_msg = mysqli_real_escape_string($conn, mysqli_error($conn));

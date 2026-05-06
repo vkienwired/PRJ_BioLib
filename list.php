@@ -171,7 +171,7 @@ $result_list = mysqli_query($conn, $sql_list);
                             <?php 
                                 $image_path = "img/" . htmlspecialchars($row['cid']) . ".svg";
                             ?>
-                            <img src="<?php echo $image_path; ?>" 
+                            <img src="<?php echo $image_path; ?>?v=<?php echo time(); ?>" 
                                  alt="Cấu trúc 2D của <?php echo htmlspecialchars($row['name']); ?>" 
                                  class="structure-img"
                                  onerror="this.onerror=null; this.src='img/default_structure.svg'; this.alt='Dữ liệu cấu trúc đang cập nhật';">

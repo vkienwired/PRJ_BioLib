@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_res = mysqli_query($conn, $check_sql);
 
     if (mysqli_num_rows($check_res) > 0) {
-        $error_msg = "Tên đăng nhập hoặc Email này đã được đăng ký trong hệ thống mất rồi!";
+        $error_msg = "Tên đăng nhập hoặc Email này đã được đăng ký trong hệ thống";
     } else {
-        // 4. Mã hóa mật khẩu siêu cấp việt vị (Bcrypt)
+        // 4. Mã hóa mật khẩu siêu cấp
         $pass_hash = password_hash($password, PASSWORD_DEFAULT);
         
         // 5. Lưu vào Database
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 VALUES ('$username', '$pass_hash', 'user', '$fullname', '$email', '$academic_level', '$major', '$institution', '$research_interests', '$academic_statement', '$profile_links', '$publications')";
         
         if (mysqli_query($conn, $sql)) {
-            $success_msg = "Đăng ký thành công rực rỡ! Hồ sơ Contributor của cậu đã sẵn sàng.";
+            $success_msg = "Đăng ký thành công! Hồ sơ Contributor của bạn đã sẵn sàng.";
         } else {
             $error_msg = "Lỗi hệ thống: " . mysqli_error($conn);
         }
