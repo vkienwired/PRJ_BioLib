@@ -1,9 +1,10 @@
 <?php
 session_start();
-include_once 'connectdb.php';
+// 1. Nạp file cấu hình chung thay cho connectdb.php để dùng cổng 3307
+require_once 'config.php'; 
 
-// Xác thực quyền Quản trị viên
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+// ĐÃ SỬA: Dùng strtolower để so sánh quyền không phân biệt hoa thường
+if (!isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
     echo "<script>alert('Lỗi truy cập: Yêu cầu quyền Quản trị viên hệ thống.'); window.location.href = 'index.php';</script>";
     exit();
 }
@@ -16,6 +17,7 @@ include_once 'header.php';
     <meta charset="UTF-8">
     <title>Quản trị Hệ thống - BIOLIB</title>
     <style>
+        /* GIỮ NGUYÊN TOÀN BỘ CSS CỦA CẬU */
         .centered-content { 
             margin: 0 auto; 
             display: flex; 
@@ -63,11 +65,9 @@ include_once 'header.php';
         .user-link { color: #0056b3; font-weight: bold; text-decoration: none; }
         .user-link:hover { text-decoration: underline; color: #d9534f; }
 
-        /* Phân loại bản ghi */
         .status-new { color: #28a745; font-size: 12px; font-weight: bold; display: block; margin-top: 5px; }
         .status-update { color: #d9534f; font-size: 12px; font-weight: bold; display: block; margin-top: 5px; }
 
-        /* Nút thao tác */
         .action-cell {
             display: flex;
             flex-direction: column;
@@ -117,14 +117,16 @@ include_once 'header.php';
     </div>
 
         <?php
-        // Truy vấn dữ liệu: Lấy cả bản ghi mới (pending) và bản cập nhật (pending_update)
+        // ĐÃ SỬA: Đồng bộ tên bảng compoundbiolib (viết thường theo file dnakien.sql)
+        // Thêm ORDER BY để bản ghi mới nhất luôn hiện lên đầu
         $sql = "SELECT c.*, u.id AS user_id, u.fullname, u.username 
-                FROM compoundBioLib c 
+                FROM compoundbiolib c 
                 LEFT JOIN users u ON c.created_by = u.id 
-                WHERE c.status IN ('pending', 'pending_update')";
+                WHERE c.status IN ('pending', 'pending_update')
+                ORDER BY c.stt DESC";
         $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
+        if ($result && mysqli_num_rows($result) > 0) {
             echo "<table>";
             echo "<tr>
                     <th style='width: 3%'>STT</th>
@@ -136,12 +138,11 @@ include_once 'header.php';
                     <th style='width: 12%'>Thao tác</th>
                   </tr>";
             
-            $stt = 1;
+            $stt_hienthi = 1;
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr id='row-{$row['stt']}'>";
-                echo "<td>" . $stt++ . "</td>";
+                echo "<td>" . $stt_hienthi++ . "</td>";
                 
-                // Nhãn phân loại trạng thái bản ghi
                 $status_label = ($row['status'] == 'pending_update') 
                     ? "<span class='status-update'>[Bản cập nhật]</span>" 
                     : "<span class='status-new'>[Bản ghi mới]</span>";
@@ -182,6 +183,7 @@ include_once 'header.php';
     </div>
 
     <script>
+        /* GIỮ NGUYÊN TOÀN BỘ LOGIC JS CỦA CẬU */
         function processAction(url, rowId, actionType) {
             if (actionType === 'Từ chối') {
                 if (!confirm('Bạn có chắc chắn muốn từ chối và xóa bản ghi này khỏi hệ thống chờ duyệt?')) {

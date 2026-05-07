@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th3 10, 2026 lúc 08:28 PM
+-- Thời gian đã tạo: Th5 06, 2026 lúc 09:32 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `dna`
+-- Cơ sở dữ liệu: `dnakien`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `compoundBioLib`
+-- Cấu trúc bảng cho bảng `compoundbiolib`
 --
 
-CREATE TABLE `compoundBioLib` (
+CREATE TABLE `compoundbiolib` (
   `stt` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `cid` int(20) NOT NULL,
@@ -44,10 +44,10 @@ CREATE TABLE `compoundBioLib` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `compoundBioLib`
+-- Đang đổ dữ liệu cho bảng `compoundbiolib`
 --
 
-INSERT INTO `compoundBioLib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakness`, `origin`, `purpose`, `doi`, `new_stt`, `status`, `created_by`, `edit_of`) VALUES
+INSERT INTO `compoundbiolib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakness`, `origin`, `purpose`, `doi`, `new_stt`, `status`, `created_by`, `edit_of`) VALUES
 (1, 'L-Abrine', 160511, '', 'Điều hòa miễn dịch chống ung thư gan (HCC).', 'độc tính tiềm ẩn (ít độc hơn abrin)', 'hạt cây Abrus precatorius ( cam thảo dây loại trắng)', 'enzyme IDO1: PDB ID: 2D0T', 'https://doi.org/10.3389/fimmu.2023.1185985', 1, 'approved', NULL, NULL),
 (2, 'Acacetin', 5280442, '', 'chống ung thư gan và các khối u phụ thuộc STAT3 (gan phổi vú máu).', '', 'hoắc hương núi (Agastache rugosa) và cúc vàng (Chrysanthemum morifolium)', 'enzyme JAK2: tltk dùng trong Mittal et al., 2009 nhưng chưa tìm thấy báo', 'https://doi.org/10.1016/j.fct.2021.112091', 2, 'approved', NULL, NULL),
 (3, '1-Acetyl-β-carboline', 638667, '', 'ức chế viêm gan B', 'co giật', '', 'Protein: mô phỏng từ HIV reverse transcriptase để thay cho HBV POL vì chưa có cấu trúc thực nghiệm. PDB ID: 1RTD', 'https://doi.org/10.3892/etm.2023.12026', 3, 'approved', NULL, NULL),
@@ -63,8 +63,8 @@ INSERT INTO `compoundBioLib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakne
 (13, 'Alpinetin', 4053302, '', 'ung thư dạ dày', '', 'hạt Alpinia katsumadai Hayata', 'urease (Jack bean) pdb id k nói', 'https://doi.org/10.5114/aoms/138832', 13, 'approved', NULL, NULL),
 (14, 'Amentoflavone', 5281600, '', 'Ung thư biểu mô tế bào vảy thực quản (ESCC)', '', 'Selaginela tamariscia (thông đất), Ginkgobiloba (bạch quả)', 'CDK1-cyslinB: PDB 6GU2 và CDK2 / cyclin A: 4BCQ', 'https://doi.org/10.4014/jmb.2203.03050', 14, 'approved', NULL, NULL),
 (15, 'Amygdalin', 656516, '', 'Ung thư vú ba âm tính (TNBC)', 'độc khi ở liều cao', 'Hạt mơ (Prunus armeniaca), hạnh nhân đắng, hạt táo, hạt mận, hạt anh đào …', 'BARD1, RAD51 và PALB2  (k có bản full)', 'https://doi.org/10.1007/s12033-023-00680-8', 15, 'approved', NULL, NULL),
-(16, 'alpha-Amyrin', 73170, '', 'khả năng thâm nhập tốt vào hàng rào máu não', '', 'sáp thực vật (plant waxes), Protium heptaphyllum,Boswellia spp., Euphorbia tirucalli', 'CB1: pdbid 5U09', 'https://doi.org/10.3390/ijms22073595', 16, 'approved', NULL, NULL),
-(17, 'Andrographolide', 5318517, '', 'covid 19', '', 'cây Xuyên tâm liên (Andrographis paniculata)', 'Cấu trúc tinh thể NFkB1, p50 của con người, với DNA tự nhiên liên kết: PDB Id, 2V2T. Cấu trúc tinh thể của TNF ở người PDB Id: 5MU8.', 'https://doi.org/10.3389/fimmu.2021.648250', 17, 'approved', NULL, NULL),
+(16, 'alpha-Amyrin', 73170, '', 'khả năng thâm nhập tốt vào hàng rào máu não', '', 'sáp thực vật (plant waxes), Protium heptaphyllum,Boswellia spp., Euphorbia tirucalli t', 'CB1: pdbid 5U09', 'https://doi.org/10.3390/ijms22073595', 16, 'approved', NULL, NULL),
+(17, 'test', 0, '', 'covid 19', '', 'cây Xuyên tâm liên (Andrographis paniculata)', 'Cấu trúc tinh thể NFkB1, p50 của con người, với DNA tự nhiên liên kết: PDB Id, 2V2T. Cấu trúc tinh thể của TNF ở người PDB Id: 5MU8.', 'https://doi.org/10.3389/fimmu.2021.648250', 17, 'approved', NULL, NULL),
 (18, 'Angoroside C 25', 23757181, '', 'hỗ trợ điều trị mãn kinh', '', 'Rễ Scrophularia buergeriana', 'ERα:  PDB ID 1 × 7R.', 'https://doi.org/10.3390/biomedicines13092151', 18, 'approved', NULL, NULL),
 (19, 'Anisodamin  ( dùng lig dạng muối của Ani: Ani HBr)', 6918612, '', 'kháng viêm, phục hồi miễn dịch trong nhiễm trùng huyết', '', 'thực vật họ Solanaceae như Anisodus tanguticus', 'ELANE (PDB ID: 5ABW, chuỗi A; và CCL5 (PDB ID: 5CMD)', 'https://doi.org/10.1038/s41598-025-13187-w', 19, 'approved', NULL, NULL),
 (20, 'Apigenin', 5280443, '', 'chống ung thư HPV-16.', '', 'Parsley (rau mùi tây) Chamomile (hoa cúc La Mã) Celery (cần tây) Thyme, oregano,', 'TP-53 (PDB ID: 8DC4), pRb (PDB ID: 4CRI) và APOBEC3H (PDB ID: 5Z98)', 'https://doi.org/10.3390/cimb46100661 (tác giả sàng lọc bằng chatgpt)', 20, 'approved', NULL, NULL),
@@ -151,7 +151,7 @@ INSERT INTO `compoundBioLib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakne
 (103, 'Darunavir', 213039, 'CC(C)CN(CC(C(CC1=CC=CC=C1)NC(=O)OC2COC3C2CCO3)O)S(=O)(=O)C4=CC=C(C=C4)N', 'Điều trị nhiễm HIV/AIDS ở người lớn và trẻ em từ 3 tuổi trở lên.\r\nPhòng ngừa HIV/AIDS ở những người có nguy cơ cao bị lây nhiễm.', 'Các tác dụng phụ thường gặp bao gồm tiêu chảy, buồn nôn, đau bụng, đau đầu và phát ban. Các tác dụng phụ nghiêm trọng hơn cũng có thể xảy ra, bao gồm sỏi mật, viêm gan, tăng triglyceride và thay đổi nhịp tim.', 'tổng hợp lần đầu tiên vào năm 1995. Phát triển bởi công ty dược phẩm Pfizer vào đầu những năm 2000.', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 ', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
 (104, 'Golvatinib', 16118392, 'CN1CCN(CC1)C2CCN(CC2)C(=O)NC3=NC=CC(=C3)OC4=CC(=C(C=C4)NC(=O)C5(CC5)C(=O)NC6=CC=C(C=C6)F)F', 'ức chế kép nhắm mục tiêu vào hai phân tử tyrosine kinase quan trọng: c-Met và VEGFR-2,điều trị nhiều loại ung thư, bao gồm ung thư phổi không tế bào nhỏ (NSCLC), ung thư dạ dày và ung thư đại trực tràng', 'Tiêu chảy, Phát ban, Mệt mỏi, Tăng huyết áp, Protein niệu, Buồn nôn, Nôn mửa, Táo bón, Đau bụng, Đau đầu', 'tổng hợp lần đầu tiên vào đầu những năm 2000 bởi Incyte Corporation, một công ty dược phẩm có trụ sở tại Arizona, Hoa Kỳ.', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 ', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
 (105, 'Beclabuvir', 56934415, 'CN1CC2CCC(C1)N2C(=O)C34CC3C5=C(C=CC(=C5)OC)C6=C(C7=C(N6C4)C=C(C=C7)C(=O)NS(=O)(=O)N(C)C)C8CCCCC8', 'kết hợp với các thuốc khác để tạo thành chế độ điều trị tổng hợp, có thể giúp tăng hiệu quả điều trị viêm gan C.', 'không nên được sử dụng đơn lẻ mà cần kết hợp với các thuốc khác, có thể gây ra tác dụng phụ, và người bệnh cần tham khảo ý kiến của bác sĩ trước khi sử dụng.', 'phát triển bởi công ty AbbVie ', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
-(106, 'Nafamostat', 4413, 'C1=CC(=CC=C1C(=O)OC2=CC3=C(C=C2)C=C(C=C3)C(=N)N)N=C(N)N', 'một chất ức chế protease serine tổng hợp, là thuốc chống đông máu tác dụng ngắn và cũng được sử dụng để điều trị viêm tụy. Nó cũng có một số đặc tính chống vi rút và chống ung thư tiềm năng', 'có thể gặp trường hợp mất bạch cầu hạt, tăng kali máu và sốc phản vệ', 'được tổng hợp', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 ', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
+(106, 'Nafamostat', 4413, 'C1=CC(=CC=C1C(=O)OC2=CC3=C(C=C2)C=C(C=C3)C(=N)N)N=C(N)N', 'một chất ức chế protease serine tổng hợp, là thuốc chống đông máu tác dụng ngắn và cũng được sử dụng để điều trị viêm tụy. Nó cũng có một số đặc tính chống vi rút và chống ung thư tiềm năng', 'có thể gặp trường hợp mất bạch cầu hạt, tăng kali máu và sốc phản vệ', 'được tổng hợp', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 1', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
 (107, 'Bictegravir', 90311989, 'C1CC2CC1N3C(O2)CN4C=C(C(=O)C(=C4C3=O)O)C(=O)NCC5=C(C=C(C=C5F)F)F', 'ngăn chặn việc sao chép DNA virus HIV-1 vào gen di truyền của con người, ngăn chặn sự phát triển của virus.', 'không nên được sử dụng cùng với dofetilide và rifampin.tránh sử dụng các chất kích thích CYP3A4', 'phát triển từ hợp chất dolutegravir bởi các nhà khoa học tại Gilead Sciences', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 ', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
 (108, 'Baloxavir marboxil', 124081896, 'COC(=O)OCOC1=C2C(=O)N3CCOCC3N(N2C=CC1=O)C4C5=C(CSC6=CC=CC=C46)C(=C(C=C5)F)F', 'ức chế hoạt động của endonuclease flu, một enzym chủ chốt trong chu kỳ sao chép của virus cúm, thuốc chống vi-rút điều trị nhiễm cúm A và cúm B.', '', 'phát triển bởi Shionogi Co. (Nhật Bản)', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 ', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
 (109, 'Avatrombopag', 9852519, 'C1CCC(CC1)N2CCN(CC2)C3=C(N=C(S3)NC(=O)C4=CC(=C(N=C4)N5CCC(CC5)C(=O)O)Cl)C6=CC(=CS6)Cl', 'có tác dụng làm tăng số lượngtiểu cầu nhưng không kích hoạt chức năng của tiểu cầu.', 'gây tác dụng phụ cho con người, tránh phối hợp chung, bao gồm: itraconazole, fluconazole, rifampin và verapamil, trong số những loại khác', 'phát triển bởi Bristol-Myers Squibb và được FDA Hoa Kỳ phê duyệt vào năm 2014', 'SARS-CoV-2 RNA-dependent RNA polymerase (RdRp) enzyme DB ID:6M71 ', '10.31276/VJSTE.63(4).47-54', NULL, 'approved', 1, NULL),
@@ -169,7 +169,16 @@ INSERT INTO `compoundBioLib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakne
 (121, 'quercitrin', 5280459, 'C[C@H]1[C@@H]([C@H]([C@H]([C@@H](O1)OC2=C(OC3=CC(=CC(=C3C2=O)O)O)C4=CC(=C(C=C4)O)O)O)O)O', 'chống oxy hóa, chống viêm, bảo vệ gan, hỗ trợ tim mạch, kháng khuẩn – virus và tiềm năng chống ung thư.', 'hấp thu kém và thiếu dữ liệu lâm sàng ở người, nên hiện tại thường được khai thác như một chất bổ trợ trong dinh dưỡng và dược liệu.', 'là một flavonoid glycoside tự nhiên ncos trong lá sồi, lá keo, lá táo gai,...', '', '', NULL, 'approved', 1, NULL),
 (122, 'quercetin 3-O-glucuronide', 5274585, 'C1=CC(=C(C=C1C2=C(C(=O)C3=C(C=C(C=C3O2)O)O)O[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)C(=O)O)O)O)O)O)O)O', 'chống oxy hóa, chống viêm, bảo vệ tim mạch và thần kinh', 'sinh khả dụng hạn chế và thiếu nghiên cứu lâm sàng', 'hình thành sau khi ăn thực phẩm giàu quercetin (táo, hành tây, trà xanh, nho, quả mọng…).có mặt ở mức thấp trong một số loại trái cây và rau', '', '', NULL, 'approved', 1, NULL),
 (123, 'Fentanyl', 3345, 'CCC(=O)N(C1CCN(CC1)CCC2=CC=CC=C2)C3=CC=CC=C3', 'giảm đau nặng và gây mê', 'nguy cơ nghiện, lệ thuộc và quá liều gây tử vong', 'Được phát triển từ meperidine (pethidine) – một opioid tổng hợp trước đó. Hiện nay, fentanyl và các dẫn xuất (ví dụ: carfentanil, sufentanil, alfentanil, remifentanil) được tổng hợp trong phòng thí nghiệm cho mục đích y học.', '', '', NULL, 'approved', 1, NULL),
-(124, 'curcumin', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', '', NULL, 'approved', 1, NULL);
+(124, 'curcumin', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', 'https://doi.org/10.3390/biomedicines13092151', NULL, 'approved', 1, NULL),
+(145, 'L-Abrine_1', 160511, '', 'Điều hòa miễn dịch chống ung thư gan (HCC).', 'độc tính tiềm ẩn (ít độc hơn abrin)', 'hạt cây Abrus precatorius ( cam thảo dây loại trắng)', 'enzyme IDO1: PDB ID: 2D0T', 'https://doi.org/10.3389/fimmu.2023.1185985', NULL, 'pending_update', 9, 1),
+(146, 'L-Abrine_1', 160511, '', 'Điều hòa miễn dịch chống ung thư gan (HCC).', 'độc tính tiềm ẩn (ít độc hơn abrin)', 'hạt cây Abrus precatorius ( cam thảo dây loại trắng)', 'enzyme IDO1: PDB ID: 2D0T', 'https://doi.org/10.3389/fimmu.2023.1185985', NULL, 'pending_update', 9, 1);
+INSERT INTO `compoundbiolib` (`stt`, `name`, `cid`, `smiles`, `benefit`, `weakness`, `origin`, `purpose`, `doi`, `new_stt`, `status`, `created_by`, `edit_of`) VALUES
+(147, 'test', 969516, 'C1=CC=C(C(=C1)CO)O[C@H]2[C@@H]([C@H]([C@@H]([C@H](O2)CO)O)O)O', '', '', '', '', '', NULL, 'approved', 7, NULL),
+(148, 'L-Abrine_1', 160511, '', 'Điều hòa miễn dịch chống ung thư gan (HCC).', 'độc tính tiềm ẩn (ít độc hơn abrin)', 'hạt cây Abrus precatorius ( cam thảo dây loại trắng)', 'enzyme IDO1: PDB ID: 2D0T', 'https://doi.org/10.3389/fimmu.2023.1185985', NULL, 'pending_update', 9, 1),
+(149, 'L-Abrine_123', 160511, '', 'Điều hòa miễn dịch chống ung thư gan (HCC).', 'độc tính tiềm ẩn (ít độc hơn abrin)', 'hạt cây Abrus precatorius ( cam thảo dây loại trắng)', 'enzyme IDO1: PDB ID: 2D0T', 'https://doi.org/10.3389/fimmu.2023.1185985', NULL, 'pending_update', 9, 1),
+(150, 'curcumin_123', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', 'https://doi.org/10.3390/biomedicines13092151', NULL, 'pending_update', 9, 124),
+(151, 'curcumin_123', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', 'https://doi.org/10.3390/biomedicines13092151', NULL, 'pending_update', 9, 124),
+(152, 'curcumin_123', 969516, 'COC1=C(C=CC(=C1)/C=C/C(=O)CC(=O)/C=C/C2=CC(=C(C=C2)O)OC)O', 'chống viêm, chống oxy hóa, bảo vệ gan, tim mạch và tiềm năng chống ung thư', 'hấp thu kém, tác dụng phụ đường tiêu hóa và thiếu bằng chứng lâm sàng đầy đủ', 'chủ yếu có trong củ nghệ (Curcuma longa).', '', 'https://doi.org/10.3390/biomedicines13092151', NULL, 'pending_update', 9, 124);
 
 -- --------------------------------------------------------
 
@@ -10013,16 +10022,17 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `fullname`, `academic_level`, `major`, `institution`, `research_interests`, `academic_statement`, `profile_links`, `publications`) VALUES
 (7, 'admin', '$2y$10$XuW2OMjW9MEUprQfYMi7deTRPLYODikH5IunyhHR/9ZiBhg8gCGVO', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'vutrungkien_t67@hus.edu.vn', '$2y$10$nWnnhhT5YDeI3jqq58YkuOxrDHOSWD120S/jgWznYM27z534gXsqq', 'user', 'vutrungkien_t67@hus.edu.vn', 'Vũ Trung Kiên', 'Sinh viên đại học', 'Vi sinh y học', 'Trường Đại học Khoa học Tự Nhiên - Đại học Quốc gia Hà Nội', 'Thiết kế thuốc', 'Kinh nghiệm nghiên cứu 5 năm trong lĩnh vực y sinh', 'GS:  | ORCID:  | RG: ', '');
+(9, 'vutrungkien_t67@hus.edu.vn', '$2y$10$nWnnhhT5YDeI3jqq58YkuOxrDHOSWD120S/jgWznYM27z534gXsqq', 'user', 'vutrungkien_t67@hus.edu.vn', 'Vũ Trung Kiên', 'Sinh viên đại học', 'Vi sinh y học', 'Trường Đại học Khoa học Tự Nhiên - Đại học Quốc gia Hà Nội', 'Thiết kế thuốc', 'Kinh nghiệm nghiên cứu 5 năm trong lĩnh vực y sinh', 'GS:  | ORCID:  | RG: ', ''),
+(11, 'nhatthach_bio', '$2y$10$3n2C4EuwEQeTuq9ae4vxLegIBfeL6B8q9EK65tRq0RdEuuq0dF/7y', 'user', 'thach.nn@hus.edu.vn', 'Nguyễn Nhật Thạch', 'Nghiên cứu sinh', 'Công nghệ sinh học', 'Trường Đại học Khoa học Tự Nhiên - Đại học Quốc gia Hà Nội', 'Sàng lọc ảo và Thiết kế thuốc (Virtual Screening & Drug Design)', 'Tập trung nghiên cứu ứng dụng Trí tuệ nhân tạo (AI) và các phương pháp mô phỏng phân tử để dự đoán ái lực liên kết giữa các hợp chất tự nhiên và Protein đích. Mong muốn xây dựng hệ thống BioLib trở thành thư viện số tin cậy cho cộng đồng nghiên cứu Y sinh tại Việt Nam.', 'GS: https://scholar.google.com/citations?user=example | ORCID: 0000-0002-1234-5678 | RG: https://www.researchgate.net/profile/Nhat-Thach-Nguyen', '10.1038/s41586-020-2012-7');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Chỉ mục cho bảng `compoundBioLib`
+-- Chỉ mục cho bảng `compoundbiolib`
 --
-ALTER TABLE `compoundBioLib`
+ALTER TABLE `compoundbiolib`
   ADD PRIMARY KEY (`stt`);
 
 --
@@ -10056,10 +10066,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT cho bảng `compoundBioLib`
+-- AUTO_INCREMENT cho bảng `compoundbiolib`
 --
-ALTER TABLE `compoundBioLib`
-  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+ALTER TABLE `compoundbiolib`
+  MODIFY `stt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT cho bảng `conference`
@@ -10083,7 +10093,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

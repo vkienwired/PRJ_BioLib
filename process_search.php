@@ -171,19 +171,21 @@ include_once 'header.php';
         <br>
 
         <?php
-        include_once("connectdb.php");
+        // ĐÃ SỬA: Nạp config.php để lấy dữ liệu đồng bộ với cổng 3307
+        require_once 'config.php';
 
         if (isset($_GET['search']) && trim($_GET['search']) !== '') {
             $search = trim($_GET['search']);
             $search_safe = mysqli_real_escape_string($conn, $search);
 
-            // Truy vấn dữ liệu đã được hệ thống phê duyệt
+            // ĐÃ SỬA: Câu SQL kết hợp lấy status 'approved' và ưu tiên STT mới nhất lên đầu
             $sql = "SELECT * FROM compoundBioLib 
                     WHERE status = 'approved' 
                       AND (name LIKE '%$search_safe%' 
                            OR cid LIKE '%$search_safe%' 
                            OR benefit LIKE '%$search_safe%' 
-                           OR origin LIKE '%$search_safe%')";
+                           OR origin LIKE '%$search_safe%')
+                    ORDER BY stt DESC";
             
             $result = mysqli_query($conn, $sql);
 

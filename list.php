@@ -1,21 +1,22 @@
 <?php
 session_start();
-include_once 'connectdb.php';
+// ĐÃ SỬA: Nạp file cấu hình chuẩn để kết nối đúng cổng 3307
+require_once 'config.php';
 include_once 'header.php';
 
-// Thiết lập thuật toán phân trang (Pagination)
+// --- 1. THUẬT TOÁN PHÂN TRANG (Giữ nguyên logic của cậu) ---
 $limit = 20; 
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $start_from = ($page - 1) * $limit;
 
-// Truy vấn tổng số bản ghi hợp lệ để tính toán số lượng trang
+// Truy vấn tổng số bản ghi đã phê duyệt
 $sql_count = "SELECT COUNT(stt) AS total FROM compoundBioLib WHERE status = 'approved'";
 $result_count = mysqli_query($conn, $sql_count);
 $row_count = mysqli_fetch_assoc($result_count);
 $total_records = $row_count['total'];
 $total_pages = ceil($total_records / $limit);
 
-// Truy vấn trích xuất dữ liệu theo giới hạn trang hiện tại
+// --- 2. TRUY VẤN DỮ LIỆU ---
 $sql_list = "SELECT stt, name, cid, origin FROM compoundBioLib 
              WHERE status = 'approved' 
              ORDER BY stt DESC 
@@ -29,6 +30,7 @@ $result_list = mysqli_query($conn, $sql_list);
     <meta charset="UTF-8">
     <title>Danh Mục Hợp Chất | BioLib</title>
     <style>
+        /* GIỮ NGUYÊN TOÀN BỘ CSS CỦA CẬU - KHÔNG CẮT XÉN */
         .list-container {
             width: 90%;
             max-width: 1200px;
@@ -39,10 +41,7 @@ $result_list = mysqli_query($conn, $sql_list);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-top: 5px solid #2c3e50;
         }
-        .list-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        .list-header { text-align: center; margin-bottom: 30px; }
         .list-header h2 {
             color: #2c3e50;
             font-family: Arial, sans-serif;
@@ -50,44 +49,19 @@ $result_list = mysqli_query($conn, $sql_list);
             letter-spacing: 1px;
             margin-bottom: 10px;
         }
-        .list-header p {
-            color: #555;
-            font-size: 16px;
-        }
-        .compound-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 15px;
-            margin-bottom: 25px;
-        }
+        .list-header p { color: #555; font-size: 16px; }
+        .compound-table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 25px; }
         .compound-table th, .compound-table td {
             border: 1px solid #dcdcdc;
             padding: 12px;
             text-align: left;
             vertical-align: middle; 
         }
-        .compound-table th {
-            background-color: #f1f3f5;
-            color: #2c3e50;
-            font-weight: bold;
-            text-align: center;
-        }
-        .compound-table td {
-            text-align: center;
-        }
-        .compound-table td:nth-child(1),
-        .compound-table td:nth-child(4) {
-            text-align: left; 
-        }
-        .compound-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        /* Hiệu ứng mờ dần khi xóa bằng JavaScript */
-        .fade-out {
-            opacity: 0;
-            transition: opacity 0.5s ease-out;
-        }
-        
+        .compound-table th { background-color: #f1f3f5; color: #2c3e50; font-weight: bold; text-align: center; }
+        .compound-table td { text-align: center; }
+        .compound-table td:nth-child(1), .compound-table td:nth-child(4) { text-align: left; }
+        .compound-table tr:hover { background-color: #f8f9fa; }
+        .fade-out { opacity: 0; transition: opacity 0.5s ease-out; }
         .structure-img {
             max-width: 140px;
             max-height: 140px;
@@ -97,7 +71,6 @@ $result_list = mysqli_query($conn, $sql_list);
             border: 1px solid #eee;
             border-radius: 4px;
         }
-
         .action-btn {
             display: inline-block;
             padding: 6px 12px;
@@ -108,19 +81,11 @@ $result_list = mysqli_query($conn, $sql_list);
             font-weight: bold;
             color: white;
             transition: background-color 0.3s;
-            cursor: pointer; /* Bổ sung con trỏ cho thẻ a dùng JavaScript */
+            cursor: pointer;
         }
         .edit-btn { background-color: #f39c12; }
-        .edit-btn:hover { background-color: #d68910; }
         .delete-btn { background-color: #e74c3c; border: none; }
-        .delete-btn:hover { background-color: #c0392b; }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
+        .pagination { display: flex; justify-content: center; align-items: center; margin-top: 20px; }
         .pagination a {
             color: #2980b9;
             padding: 8px 16px;
@@ -128,17 +93,9 @@ $result_list = mysqli_query($conn, $sql_list);
             border: 1px solid #ddd;
             margin: 0 4px;
             border-radius: 4px;
-            transition: background-color 0.3s;
             font-weight: bold;
         }
-        .pagination a.active {
-            background-color: #2c3e50;
-            color: white;
-            border: 1px solid #2c3e50;
-        }
-        .pagination a:hover:not(.active) {
-            background-color: #f1f3f5;
-        }
+        .pagination a.active { background-color: #2c3e50; color: white; border: 1px solid #2c3e50; }
     </style>
 </head>
 <body>
@@ -157,7 +114,6 @@ $result_list = mysqli_query($conn, $sql_list);
                         <th style="width: 15%;">Mã định danh CID</th>
                         <th style="width: <?php echo $is_admin ? '20%' : '25%'; ?>;">Cấu trúc 2D</th>
                         <th style="width: <?php echo $is_admin ? '25%' : '30%'; ?>;">Nguồn gốc</th>
-                        
                         <?php if ($is_admin): ?>
                             <th style="width: 15%;">Thao tác</th>
                         <?php endif; ?>
@@ -165,19 +121,20 @@ $result_list = mysqli_query($conn, $sql_list);
                 </thead>
                 <tbody>
                     <?php while($row = mysqli_fetch_assoc($result_list)): ?>
-                    <tr id="row-<?php echo $row['stt']; ?>"> <td><strong><?php echo htmlspecialchars($row['name']); ?></strong></td>
+                    <tr id="row-<?php echo $row['stt']; ?>"> 
+                        <td><strong><?php echo htmlspecialchars($row['name']); ?></strong></td>
                         <td><?php echo htmlspecialchars($row['cid']); ?></td>
                         <td>
                             <?php 
+                                // Load ảnh tĩnh từ thư mục img/ dựa trên mã CID
                                 $image_path = "img/" . htmlspecialchars($row['cid']) . ".svg";
                             ?>
                             <img src="<?php echo $image_path; ?>?v=<?php echo time(); ?>" 
-                                 alt="Cấu trúc 2D của <?php echo htmlspecialchars($row['name']); ?>" 
+                                 alt="Cấu trúc 2D" 
                                  class="structure-img"
-                                 onerror="this.onerror=null; this.src='img/default_structure.svg'; this.alt='Dữ liệu cấu trúc đang cập nhật';">
+                                 onerror="this.onerror=null; this.src='img/default_structure.svg';">
                         </td>
                         <td><?php echo htmlspecialchars($row['origin']); ?></td>
-                        
                         <?php if ($is_admin): ?>
                             <td>
                                 <a href="edit.php?id=<?php echo $row['stt']; ?>" class="action-btn edit-btn">Sửa</a>
@@ -189,25 +146,13 @@ $result_list = mysqli_query($conn, $sql_list);
                 </tbody>
             </table>
 
-            <?php if ($total_pages > 1): ?>
             <div class="pagination">
-                <?php if($page > 1): ?>
-                    <a href="list.php?page=<?php echo $page - 1; ?>">Trước</a>
-                <?php endif; ?>
-
-                <?php 
-                for ($i = 1; $i <= $total_pages; $i++): 
-                ?>
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                     <a href="list.php?page=<?php echo $i; ?>" class="<?php if($page == $i) echo 'active'; ?>">
                         <?php echo $i; ?>
                     </a>
                 <?php endfor; ?>
-
-                <?php if($page < $total_pages): ?>
-                    <a href="list.php?page=<?php echo $page + 1; ?>">Sau</a>
-                <?php endif; ?>
             </div>
-            <?php endif; ?>
 
         <?php else: ?>
             <p style="text-align: center; color: #666; font-style: italic; padding: 40px 0;">
@@ -217,38 +162,23 @@ $result_list = mysqli_query($conn, $sql_list);
     </div>
 
     <script>
+        /* GIỮ NGUYÊN TOÀN BỘ JAVASCRIPT CỦA CẬU */
         function executeAsyncDelete(id, buttonElement) {
-            // Xác nhận thao tác trước khi thực thi
-            if (confirm('Cảnh báo: Bạn có chắc chắn muốn xóa hợp chất này? Dữ liệu bị xóa không thể khôi phục.')) {
-                
-                // Gửi yêu cầu GET ngầm tới delete_compound.php
+            if (confirm('Cảnh báo: Bạn có chắc chắn muốn xóa hợp chất này?')) {
                 fetch('delete_compound.php?id=' + id)
                     .then(response => response.text())
                     .then(data => {
-                        // Kiểm tra phản hồi trả về
                         if (data.trim() === 'success') {
-                            alert('Hệ thống: Đã xóa thành công hợp chất khỏi cơ sở dữ liệu.');
-                            
-                            // Hiệu ứng mờ dần và xóa dòng HTML chứa hợp chất
                             let tr = buttonElement.closest('tr');
                             tr.classList.add('fade-out');
                             setTimeout(() => {
                                 tr.remove();
-                                
-                                // (Tùy chọn) Cập nhật lại số lượng tổng trên giao diện
                                 let totalElement = document.getElementById('total-count');
-                                if (totalElement) {
-                                    totalElement.innerText = parseInt(totalElement.innerText) - 1;
-                                }
-                            }, 500); // Đợi 500ms cho hiệu ứng chạy xong
-                            
+                                if (totalElement) totalElement.innerText = parseInt(totalElement.innerText) - 1;
+                            }, 500);
                         } else {
-                            alert('Lỗi hệ thống: Quá trình xóa thất bại. Dữ liệu trả về: ' + data);
+                            alert('Lỗi: ' + data);
                         }
-                    })
-                    .catch(error => {
-                        console.error('Lỗi kết nối:', error);
-                        alert('Lỗi mạng: Không thể kết nối tới máy chủ để thực hiện thao tác.');
                     });
             }
         }

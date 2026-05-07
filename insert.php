@@ -1,6 +1,7 @@
 <?php
 session_start();
-include('connectdb.php'); 
+// 1. Nạp config.php thay cho connectdb.php để dùng cổng 3307 và hằng số Python
+require_once 'config.php'; 
 
 // Chốt chặn an ninh: Phải đăng nhập mới được xử lý file này
 if (!isset($_SESSION['user_id'])) {
@@ -9,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name']) && isset($_POST['cid'])) {
     
-    // 1. Dọn dẹp dữ liệu chống SQL Injection
+    // 2. Dọn dẹp dữ liệu chống SQL Injection (Sử dụng biến $conn từ config.php)
     $name     = mysqli_real_escape_string($conn, $_POST['name']);
     $cid      = mysqli_real_escape_string($conn, $_POST['cid']);
     $smiles   = mysqli_real_escape_string($conn, $_POST['smiles']);
@@ -22,32 +23,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name']) && isset($_POS
     // Thông tin phân quyền
     $created_by = $_SESSION['user_id'];
     
-    // Nếu là Admin đăng -> Duyệt luôn. Nếu là User đăng -> Chờ duyệt (pending)
-    $status = ($_SESSION['role'] == 'admin') ? 'approved' : 'pending';
+    // Phân loại: Admin đăng -> Duyệt luôn (approved). User đăng -> Chờ duyệt (pending)
+    $status = (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') ? 'approved' : 'pending';
 
     if (!empty($name) && !empty($cid)) {
 
-        // 2. Thêm dữ liệu vào CSDL (Bao gồm cả status và created_by)
+        // 3. Thêm dữ liệu vào CSDL
         $sql = "INSERT INTO compoundBioLib (name, cid, smiles, benefit, weakness, origin, purpose, doi, status, created_by)
                 VALUES ('$name', '$cid', '$smiles', '$benefit', '$weakness', '$origin', '$purpose', '$doi', '$status', '$created_by')";
 
         if (mysqli_query($conn, $sql)) {
-            // 3. Nếu chèn DB thành công và có SMILES, gọi Python vẽ hình
-            if (!empty($_POST['smiles'])) {
-                // Đường dẫn Python và Script (cậu nhớ kiểm tra lại đường dẫn này cho khớp với máy cậu nhé)
-                $pythonPath = 'C:\\Users\\ADMIN\\anaconda3\\envs\\rdkit-env\\python.exe';
-                $scriptPath = 'C:\\xampp\\htdocs\\BioLib\\smiles.py';
+            
+            // 4. Nếu chèn DB thành công và có SMILES, gọi Python vẽ hình
+            if (!empty($smiles)) {
+                // SỬ DỤNG HẰNG SỐ ĐƯỜNG DẪN ĐÃ KHAI BÁO TRONG config.php
+                $pythonPath = PYTHON_PATH;
+                $scriptPath = SCRIPT_PATH;
 
-                // Bọc $_POST['smiles'] vào escapeshellarg để Python hiểu chuỗi dài
+                // Bọc tham số vào escapeshellarg để bảo mật hệ thống
                 $cmd = escapeshellcmd($pythonPath) . ' ' . escapeshellarg($scriptPath) . ' ' .
-                       escapeshellarg($_POST['smiles']) . ' ' . escapeshellarg($_POST['cid']);
+                       escapeshellarg($smiles) . ' ' . escapeshellarg($cid);
 
                 $output = [];
                 $returnVar = 0;
+                // Thực thi lệnh vẽ hình bằng RDKit
                 exec($cmd . " 2>&1", $output, $returnVar);
             }
 
-            // Thông báo tùy theo quyền
+            // Thông báo tùy theo quyền hạn
             if ($status == 'pending') {
                 echo "<script>alert('Cảm ơn cậu! Dữ liệu đã gửi thành công và đang chờ Admin duyệt nhé.');</script>";
             } else {
@@ -55,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name']) && isset($_POS
             }
 
         } else {
+            // Hiển thị lỗi cụ thể từ MySQL nếu không lưu được
             echo "<script>alert('Ối, có lỗi khi lưu dữ liệu: " . mysqli_error($conn) . "');</script>";
         }
         
@@ -66,10 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name']) && isset($_POS
 // Đóng kết nối
 mysqli_close($conn);
 
-// Trở về trang chủ
+// Trở về trang danh sách để cập nhật dữ liệu mới
 echo "<script>
 setTimeout(() => {
-    window.location.href = 'index.php';
+    window.location.href = 'list.php';
 }, 100);
 </script>";
 ?>
