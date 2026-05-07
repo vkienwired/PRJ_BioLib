@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     // 3. Thực hiện lệnh xóa
     // Tớ giữ nguyên câu lệnh của cậu vì nó sẽ xóa sạch bản ghi dựa trên 'stt' 
     // bất kể là đang pending hay approved.
-    $sql = "DELETE FROM compoundbioLib WHERE stt = '$id'";
+    $sql = "DELETE FROM compoundbiolib WHERE stt = '$id'";
     
     if (mysqli_query($conn, $sql)) {
         // Trả về đúng chữ "success" để Ajax ở Dashboard biết mà ẩn dòng đó đi

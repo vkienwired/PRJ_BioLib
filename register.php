@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'connectdb.php';
+require_once 'config.php';
 
 $error_msg = "";
 $success_msg = "";

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'connectdb.php';
+require_once 'config.php';
 
 // Xác thực quyền truy cập: Chỉ Quản trị viên (Admin) mới được phép xem hồ sơ chi tiết của người dùng khác.
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {

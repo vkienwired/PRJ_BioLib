@@ -179,7 +179,7 @@ include_once 'header.php';
             $search_safe = mysqli_real_escape_string($conn, $search);
 
             // ĐÃ SỬA: Câu SQL kết hợp lấy status 'approved' và ưu tiên STT mới nhất lên đầu
-            $sql = "SELECT * FROM compoundBioLib 
+            $sql = "SELECT * FROM compoundbiolib 
                     WHERE status = 'approved' 
                       AND (name LIKE '%$search_safe%' 
                            OR cid LIKE '%$search_safe%' 

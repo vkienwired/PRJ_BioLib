@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name']) && isset($_POS
     if (!empty($name) && !empty($cid)) {
 
         // 3. Thêm dữ liệu vào CSDL
-        $sql = "INSERT INTO compoundbioLib (name, cid, smiles, benefit, weakness, origin, purpose, doi, status, created_by)
+        $sql = "INSERT INTO compoundbiolib (name, cid, smiles, benefit, weakness, origin, purpose, doi, status, created_by)
                 VALUES ('$name', '$cid', '$smiles', '$benefit', '$weakness', '$origin', '$purpose', '$doi', '$status', '$created_by')";
 
         if (mysqli_query($conn, $sql)) {

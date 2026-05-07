@@ -1,10 +1,10 @@
 <?php
 
-require_once 'connectdb.php';
+require_once 'config.php';
 
 echo "<h2>Kiểm tra các hợp chất chưa có ảnh 2D</h2>";
 
-$sql = "SELECT stt, name, cid, doi FROM compoundbioLib ORDER BY stt";
+$sql = "SELECT stt, name, cid, doi FROM compoundbiolib ORDER BY stt";
 $result = mysqli_query($conn, $sql);
 
 echo "<table border='1' cellpadding='5' cellspacing='0'>";

@@ -1,5 +1,5 @@
 <?php
-require_once 'connectdb.php';
+require_once 'config.php';
 
 // ĐƯỜNG DẪN PYTHON TRONG ENV RDKit
 $pythonPath = 'C:\\Users\\ADMIN\\anaconda3\\envs\\rdkit-env\\python.exe';
@@ -16,7 +16,7 @@ if (!is_dir($imgDir)) {
 
 echo "<h2>Tạo ảnh 2D cho các hợp chất chưa có SVG</h2>";
 
-$sql = "SELECT stt, name, cid, smiles FROM compoundbioLib ORDER BY stt";
+$sql = "SELECT stt, name, cid, smiles FROM compoundbiolib ORDER BY stt";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {

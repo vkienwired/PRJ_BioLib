@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'connectdb.php';
+require_once 'config.php';
 
 // Xác thực quyền Quản trị viên
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {

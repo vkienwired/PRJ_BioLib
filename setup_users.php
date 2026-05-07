@@ -1,5 +1,5 @@
 <?php
-include_once 'connectdb.php';
+require_once 'config.php';
 
 // 1. Chắc chắn bảng users tồn tại
 $sql_create = "CREATE TABLE IF NOT EXISTS `users` (
