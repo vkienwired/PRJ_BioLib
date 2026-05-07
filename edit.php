@@ -15,7 +15,7 @@ if (!isset($_GET['id'])) {
 $id = mysqli_real_escape_string($conn, $_GET['id']);
 
 // Truy xuất dữ liệu gốc để hiển thị trên form
-$sql_old = "SELECT * FROM compoundBioLib WHERE stt = '$id'";
+$sql_old = "SELECT * FROM compoundbioLib WHERE stt = '$id'";
 $res_old = mysqli_query($conn, $sql_old);
 $old_data = mysqli_fetch_assoc($res_old);
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_SESSION['role'] == 'admin') {
         // Quản trị viên cập nhật trực tiếp (Không cần tạo bản nháp)
-        $update_sql = "UPDATE compoundBioLib SET name='$name', cid='$cid', smiles='$smiles', benefit='$benefit', weakness='$weakness', origin='$origin', purpose='$purpose', doi='$doi' WHERE stt='$id'";
+        $update_sql = "UPDATE compoundbioLib SET name='$name', cid='$cid', smiles='$smiles', benefit='$benefit', weakness='$weakness', origin='$origin', purpose='$purpose', doi='$doi' WHERE stt='$id'";
         
         if (mysqli_query($conn, $update_sql)) {
             if (!empty($smiles)) {
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         // Người dùng (Contributor) đề xuất chỉnh sửa -> Tạo bản nháp (Shadow Copy)
-        $insert_sql = "INSERT INTO compoundBioLib (name, cid, smiles, benefit, weakness, origin, purpose, doi, status, created_by, edit_of)
+        $insert_sql = "INSERT INTO compoundbioLib (name, cid, smiles, benefit, weakness, origin, purpose, doi, status, created_by, edit_of)
                        VALUES ('$name', '$cid', '$smiles', '$benefit', '$weakness', '$origin', '$purpose', '$doi', 'pending_update', '$created_by', '$id')";
         
         // Cơ chế kiểm tra lỗi nghiêm ngặt

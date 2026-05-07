@@ -16,7 +16,7 @@ if (!is_dir($imgDir)) {
 
 echo "<h2>Tạo ảnh 2D cho các hợp chất chưa có SVG</h2>";
 
-$sql = "SELECT stt, name, cid, smiles FROM compoundBioLib ORDER BY stt";
+$sql = "SELECT stt, name, cid, smiles FROM compoundbioLib ORDER BY stt";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {

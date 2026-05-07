@@ -37,8 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pass_hash = password_hash($password, PASSWORD_DEFAULT);
         
         // 5. Lưu vào Database
-        $sql = "INSERT INTO users (username, password, role, fullname, email, academic_level, major, institution, research_interests, academic_statement, profile_links, publications) 
-                VALUES ('$username', '$pass_hash', 'user', '$fullname', '$email', '$academic_level', '$major', '$institution', '$research_interests', '$academic_statement', '$profile_links', '$publications')";
+        $sql = "INSERT INTO users (username, password, role, fullname, email, academic_level, major, 
+        institution, research_interests, academic_statement, profile_links, publications) 
+                VALUES ('$username', '$pass_hash', 'user', '$fullname', '$email', '$academic_level', 
+                '$major', '$institution', '$research_interests', '$academic_statement', '$profile_links',
+                '$publications')";
         
         if (mysqli_query($conn, $sql)) {
             $success_msg = "Đăng ký thành công! Hồ sơ Contributor của bạn đã sẵn sàng.";
