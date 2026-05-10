@@ -2,10 +2,10 @@
 require_once 'config.php';
 
 // ĐƯỜNG DẪN PYTHON TRONG ENV RDKit
-$pythonPath = 'C:\\Users\\ADMIN\\anaconda3\\envs\\rdkit-env\\python.exe';
+$pythonPath = PYTHON_PATH;
 
 // ĐƯỜNG DẪN TỚI smiles.py
-$scriptPath = 'C:\\xampp\\htdocs\\BioLib\\smiles.py';
+$scriptPath = SCRIPT_PATH;
 
 // Thư mục img nằm trong project
 $imgDir = __DIR__ . DIRECTORY_SEPARATOR . 'img';

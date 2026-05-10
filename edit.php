@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if (mysqli_query($conn, $update_sql)) {
             if (!empty($smiles)) {
-        $pythonPath = 'C:\\Users\\ADMIN\\anaconda3\\envs\\rdkit-env\\python.exe'; 
-        $scriptPath = 'C:\\xampp\\htdocs\\BioLib\\smiles.py';
+        $pythonPath = PYTHON_PATH; 
+        $scriptPath = SCRIPT_PATH;
 
         // Lệnh thực thi: Lấy SMILES mới vẽ đè vào file có tên là CID.svg
         $cmd = escapeshellcmd($pythonPath) . ' ' . escapeshellarg($scriptPath) . ' ' .
