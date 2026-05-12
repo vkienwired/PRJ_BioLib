@@ -144,6 +144,26 @@
         .text-justify {
             text-align: justify;
         }
+        /* Nút xem 3D đính kèm trong bảng */
+        .btn-3d {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background-color: rgb(196, 215, 178);
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            border: 2px solid rgb(160, 196, 157);
+            transition: 0.3s;
+        }
+
+        .btn-3d:hover {
+            background-color: rgb(160, 196, 157);
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <?php
@@ -214,11 +234,23 @@ include_once 'header.php';
                         echo "<td>" . htmlspecialchars($row["cid"]) . "</td>";
                         
                         $imageFilename = "./img/" . htmlspecialchars($row["cid"]) . ".svg";
+                        
+                        // Mở thẻ cột (td) chứa hình 2D và nút 3D
+                        echo "<td style='text-align: center; vertical-align: middle;'>"; 
+                        
+                        // Hiển thị ảnh 2D
                         if (file_exists($imageFilename)) {
-                            echo "<td><img class='svg2d' src='" . htmlspecialchars($imageFilename) . "' alt='Cấu trúc 2D của " . htmlspecialchars($row["name"]) . "' /></td>";
+                            echo "<img class='svg2d' src='" . htmlspecialchars($imageFilename) . "' alt='Cấu trúc 2D của " . htmlspecialchars($row["name"]) . "' style='display:block; margin: 0 auto;' />";
                         } else {
-                            echo "<td><i style='color:#999;'>Chưa cập nhật</i></td>";
+                            echo "<i style='color:#999; display:block; margin-bottom: 5px;'>Chưa có ảnh 2D</i>";
                         }
+                        
+                        // Dưới ảnh 2D, chúng ta chèn nút gọi giao diện 3D
+                        // Truyền cid sang file view_3d.php qua URL (GET)
+                        echo "<a href='view_3d.php?cid=" . htmlspecialchars($row["cid"]) . "' target='_blank' class='btn-3d'>Xem mô hình 3D</a>";
+                        
+                        // Đóng thẻ cột
+                        echo "</td>";
                         
                         echo "<td class='text-justify'>" . htmlspecialchars($row["benefit"]) . "</td>";
                         echo "<td class='text-justify'>" . htmlspecialchars($row["weakness"]) . "</td>";
