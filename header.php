@@ -153,6 +153,8 @@
                 <li><a href="list.php">Danh sách</a></li>
                 <li><a href="search.php">Tìm kiếm</a></li>
                 <li><a href="addnew.php">Thêm mới</a></li>
+                
+                <li><a href="tools.php">Công cụ</a></li>
 
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                     <li><a href="admin_dashboard.php" class="admin-link">Quản trị</a></li>
