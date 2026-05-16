@@ -1,7 +1,7 @@
 <?php
 // File: view_3d.php
 if (!isset($_GET['cid'])) {
-    die("<h2 style='text-align:center; font-family:Arial; margin-top:50px;'>⚠️ Thiếu mã hợp chất (CID). Vui lòng truy cập từ danh sách tìm kiếm!</h2>");
+    die("<h2 style='text-align:center; font-family:Arial; margin-top:50px;'>Thiếu mã hợp chất (CID). Vui lòng truy cập từ danh sách tìm kiếm!</h2>");
 }
 $cid = intval($_GET['cid']);
 ?>
